@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>7.4</version>
+    <template_groups>
+        <template_group>
+            <uuid>a571c0d144b14fd4a87a9d9b2aa9fcd6</uuid>
+            <name>Templates/Applications</name>
+        </template_group>
+    </template_groups>
+    <templates>
+        <template>
+            <uuid>952b4645716b4727bdd0959b326ef0ad</uuid>
+            <template>Veeam Agent for Linux Free</template>
+            <name>Veeam Agent for Linux Free</name>
+            <description>Reuired local zbx_veeam_get_metrics.sh script!
+https://github.com/databloa
+Have fun :)</description>
+            <vendor>
+                <name>databloat</name>
+                <version>7.4-6</version>
+            </vendor>
+            <groups>
+                <group>
+                    <name>Templates/Applications</name>
+                </group>
+            </groups>
+            <items>
+                <item>
+                    <uuid>95307a5c33b04b69bbd2c083f929eafe</uuid>
+                    <name>Veeam valfree Get metrics</name>
+                    <key>system.run[sudo /etc/zabbix/scripts/zbx_veeam_get_metrics.sh]</key>
+                    <delay>10m</delay>
+                    <value_type>TEXT</value_type>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>raw</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>7edb9c5056b54690a49cf331fdf2258e</uuid>
+                    <name>Backup Data Processed</name>
+                    <type>DEPENDENT</type>
+                    <key>veeam.valfree.data.processed</key>
+                    <history>90d</history>
+                    <value_type>TEXT</value_type>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <parameters>
+                                <parameter>$.Processed</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>system.run[sudo /etc/zabbix/scripts/zbx_veeam_get_metrics.sh]</key>
+                    </master_item>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>backup-data</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>0f92a51ad81f408fb7fb2c7ca14d3b5e</uuid>
+                    <name>Backup Data Transferred</name>
+                    <type>DEPENDENT</type>
+                    <key>veeam.valfree.data.transferred</key>
+                    <history>90d</history>
+                    <value_type>TEXT</value_type>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <parameters>
+                                <parameter>$.Transferred</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>system.run[sudo /etc/zabbix/scripts/zbx_veeam_get_metrics.sh]</key>
+                    </master_item>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>backup-data</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>41bc1f5680254122970f663ed6ff114f</uuid>
+                    <name>Backup Job End</name>
+                    <type>DEPENDENT</type>
+                    <key>veeam.valfree.job.end</key>
+                    <history>90d</history>
+                    <value_type>TEXT</value_type>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <parameters>
+                                <parameter>$.End</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>system.run[sudo /etc/zabbix/scripts/zbx_veeam_get_metrics.sh]</key>
+                    </master_item>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>backup-job</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>c8b67fd5be514761b39357881a1fba55</uuid>
+                    <name>Backup Session ID</name>
+                    <type>DEPENDENT</type>
+                    <key>veeam.valfree.job.id</key>
+                    <history>90d</history>
+                    <value_type>TEXT</value_type>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <parameters>
+                                <parameter>$.ID</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>system.run[sudo /etc/zabbix/scripts/zbx_veeam_get_metrics.sh]</key>
+                    </master_item>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>backup-job</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>b1e77b783472485d9cb983c493e8575d</uuid>
+                    <name>Backup JobName</name>
+                    <type>DEPENDENT</type>
+                    <key>veeam.valfree.job.name</key>
+                    <history>90d</history>
+                    <value_type>TEXT</value_type>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <parameters>
+                                <parameter>$.JobName</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>system.run[sudo /etc/zabbix/scripts/zbx_veeam_get_metrics.sh]</key>
+                    </master_item>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>backup-job</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>7d1d503c32444db492d81033ebec9967</uuid>
+                    <name>Backup Job Start</name>
+                    <type>DEPENDENT</type>
+                    <key>veeam.valfree.job.start</key>
+                    <history>90d</history>
+                    <value_type>TEXT</value_type>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <parameters>
+                                <parameter>$.Start</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>system.run[sudo /etc/zabbix/scripts/zbx_veeam_get_metrics.sh]</key>
+                    </master_item>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>backup-job</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>d2eda62f0980405992a81401f999903a</uuid>
+                    <name>Backup Job Status</name>
+                    <type>DEPENDENT</type>
+                    <key>veeam.valfree.job.status</key>
+                    <history>90d</history>
+                    <value_type>TEXT</value_type>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <parameters>
+                                <parameter>$.Status</parameter>
+                            </parameters>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>system.run[sudo /etc/zabbix/scripts/zbx_veeam_get_metrics.sh]</key>
+                    </master_item>
+                    <tags>
+                        <tag>
+                            <tag>component</tag>
+                            <value>backup-job</value>
+                        </tag>
+                    </tags>
+                    <triggers>
+                        <trigger>
+                            <uuid>ecb2d40b0e2f4b6b954c052096c1aec1</uuid>
+                            <expression>last(/Veeam Agent for Linux Free/veeam.valfree.job.status)=&quot;Failed&quot;</expression>
+                            <recovery_mode>RECOVERY_EXPRESSION</recovery_mode>
+                            <recovery_expression>last(/Veeam Agent for Linux Free/veeam.valfree.job.status)=&quot;Success&quot;</recovery_expression>
+                            <name>Veeam Linux Agent: Last Backup Failed</name>
+                            <priority>AVERAGE</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <tags>
+                <tag>
+                    <tag>class</tag>
+                    <value>software</value>
+                </tag>
+                <tag>
+                    <tag>target</tag>
+                    <value>veeam</value>
+                </tag>
+            </tags>
+        </template>
+    </templates>
+</zabbix_export>

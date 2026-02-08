@@ -1,0 +1,238 @@
+{
+    "zabbix_export": {
+        "version": "7.4",
+        "template_groups": [
+            {
+                "uuid": "a571c0d144b14fd4a87a9d9b2aa9fcd6",
+                "name": "Templates/Applications"
+            }
+        ],
+        "templates": [
+            {
+                "uuid": "952b4645716b4727bdd0959b326ef0ad",
+                "template": "Veeam Agent for Linux Free",
+                "name": "Veeam Agent for Linux Free",
+                "description": "Reuired local zbx_veeam_get_metrics.sh script!\nhttps://github.com/databloa\nHave fun :)",
+                "vendor": {
+                    "name": "databloat",
+                    "version": "7.4-6"
+                },
+                "groups": [
+                    {
+                        "name": "Templates/Applications"
+                    }
+                ],
+                "items": [
+                    {
+                        "uuid": "95307a5c33b04b69bbd2c083f929eafe",
+                        "name": "Veeam valfree Get metrics",
+                        "key": "system.run[sudo /etc/zabbix/scripts/zbx_veeam_get_metrics.sh]",
+                        "delay": "10m",
+                        "value_type": "TEXT",
+                        "tags": [
+                            {
+                                "tag": "component",
+                                "value": "raw"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "7edb9c5056b54690a49cf331fdf2258e",
+                        "name": "Backup Data Processed",
+                        "type": "DEPENDENT",
+                        "key": "veeam.valfree.data.processed",
+                        "history": "90d",
+                        "value_type": "TEXT",
+                        "preprocessing": [
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$.Processed"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo /etc/zabbix/scripts/zbx_veeam_get_metrics.sh]"
+                        },
+                        "tags": [
+                            {
+                                "tag": "component",
+                                "value": "backup-data"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "0f92a51ad81f408fb7fb2c7ca14d3b5e",
+                        "name": "Backup Data Transferred",
+                        "type": "DEPENDENT",
+                        "key": "veeam.valfree.data.transferred",
+                        "history": "90d",
+                        "value_type": "TEXT",
+                        "preprocessing": [
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$.Transferred"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo /etc/zabbix/scripts/zbx_veeam_get_metrics.sh]"
+                        },
+                        "tags": [
+                            {
+                                "tag": "component",
+                                "value": "backup-data"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "41bc1f5680254122970f663ed6ff114f",
+                        "name": "Backup Job End",
+                        "type": "DEPENDENT",
+                        "key": "veeam.valfree.job.end",
+                        "history": "90d",
+                        "value_type": "TEXT",
+                        "preprocessing": [
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$.End"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo /etc/zabbix/scripts/zbx_veeam_get_metrics.sh]"
+                        },
+                        "tags": [
+                            {
+                                "tag": "component",
+                                "value": "backup-job"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "c8b67fd5be514761b39357881a1fba55",
+                        "name": "Backup Session ID",
+                        "type": "DEPENDENT",
+                        "key": "veeam.valfree.job.id",
+                        "history": "90d",
+                        "value_type": "TEXT",
+                        "preprocessing": [
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$.ID"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo /etc/zabbix/scripts/zbx_veeam_get_metrics.sh]"
+                        },
+                        "tags": [
+                            {
+                                "tag": "component",
+                                "value": "backup-job"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "b1e77b783472485d9cb983c493e8575d",
+                        "name": "Backup JobName",
+                        "type": "DEPENDENT",
+                        "key": "veeam.valfree.job.name",
+                        "history": "90d",
+                        "value_type": "TEXT",
+                        "preprocessing": [
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$.JobName"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo /etc/zabbix/scripts/zbx_veeam_get_metrics.sh]"
+                        },
+                        "tags": [
+                            {
+                                "tag": "component",
+                                "value": "backup-job"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "7d1d503c32444db492d81033ebec9967",
+                        "name": "Backup Job Start",
+                        "type": "DEPENDENT",
+                        "key": "veeam.valfree.job.start",
+                        "history": "90d",
+                        "value_type": "TEXT",
+                        "preprocessing": [
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$.Start"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo /etc/zabbix/scripts/zbx_veeam_get_metrics.sh]"
+                        },
+                        "tags": [
+                            {
+                                "tag": "component",
+                                "value": "backup-job"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "d2eda62f0980405992a81401f999903a",
+                        "name": "Backup Job Status",
+                        "type": "DEPENDENT",
+                        "key": "veeam.valfree.job.status",
+                        "history": "90d",
+                        "value_type": "TEXT",
+                        "preprocessing": [
+                            {
+                                "type": "JSONPATH",
+                                "parameters": [
+                                    "$.Status"
+                                ]
+                            }
+                        ],
+                        "master_item": {
+                            "key": "system.run[sudo /etc/zabbix/scripts/zbx_veeam_get_metrics.sh]"
+                        },
+                        "tags": [
+                            {
+                                "tag": "component",
+                                "value": "backup-job"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "ecb2d40b0e2f4b6b954c052096c1aec1",
+                                "expression": "last(/Veeam Agent for Linux Free/veeam.valfree.job.status)=\"Failed\"",
+                                "recovery_mode": "RECOVERY_EXPRESSION",
+                                "recovery_expression": "last(/Veeam Agent for Linux Free/veeam.valfree.job.status)=\"Success\"",
+                                "name": "Veeam Linux Agent: Last Backup Failed",
+                                "priority": "AVERAGE"
+                            }
+                        ]
+                    }
+                ],
+                "tags": [
+                    {
+                        "tag": "class",
+                        "value": "software"
+                    },
+                    {
+                        "tag": "target",
+                        "value": "veeam"
+                    }
+                ]
+            }
+        ]
+    }
+}
