@@ -12,12 +12,12 @@ SESSION_INFO=$(veeamconfig session info --id "$SESSION_ID")
 JSON=$(cat <<EOF
 {
   "ID": "$SESSION_ID",
-  "JobName": "$(echo "$SESSION_INFO" | grep 'Job name:' | awk -F': ' '{print $2}')",
-  "Status": "$(echo "$SESSION_INFO" | grep 'State:' | awk -F': ' '{print $2}')",
-  "Start": "$(echo "$SESSION_INFO" | grep 'Start time:' | awk -F': ' '{print $2":"$3}' | sed 's/:$//')",
-  "End": "$(echo "$SESSION_INFO" | grep 'End time:' | awk -F': ' '{print $2":"$3}' | sed 's/:$//')",
-  "Processed": "$(echo "$SESSION_INFO" | grep 'Processed:' | awk -F': ' '{print $2}')",
-  "Transferred": "$(echo "$SESSION_INFO" | grep 'Transferred:' | awk -F': ' '{print $2}')"
+  "JobName": "$(echo "$SESSION_INFO" | grep -m 1 'Job name:' | awk -F': ' '{print $2}')",
+  "Status": "$(echo "$SESSION_INFO" | grep -m 1 'State:' | awk -F': ' '{print $2}')",
+  "Start": "$(echo "$SESSION_INFO" | grep -m 1 'Start time:' | awk -F': ' '{print $2":"$3}' | sed 's/:$//')",
+  "End": "$(echo "$SESSION_INFO" | grep -m 1 'End time:' | awk -F': ' '{print $2":"$3}' | sed 's/:$//')",
+  "Processed": "$(echo "$SESSION_INFO" | grep -m 1 'Processed:' | awk -F': ' '{print $2}')",
+  "Transferred": "$(echo "$SESSION_INFO" | grep -m 1 'Transferred:' | awk -F': ' '{print $2}')"
 }
 EOF
 )
